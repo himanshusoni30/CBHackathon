@@ -9,7 +9,8 @@ import com.applitools.hackathon.ufg.sections.ListOfItemsSection;
 import com.applitools.hackathon.ufg.sections.SearchAndCartSection;
 import com.applitools.hackathon.ufg.sections.TrailerSection;
 
-public class TraditionalTestV1 extends BaseTests {
+public class TraditionalTestV2 extends BaseTests {
+//	private static SoftAssert asrt;
 
 	@Test
 	@Parameters({ "browser", "device", "version" })

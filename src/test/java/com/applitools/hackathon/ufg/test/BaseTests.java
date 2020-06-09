@@ -59,60 +59,72 @@ public class BaseTests {
 		}
 	}
 
-	@Parameters({ "browser", "width" })
-	@BeforeMethod
-	public void openBrowser(String browser, String width) {
-		int w = Integer.parseInt(width);
+	@Parameters({ "browser", "device", "version" })
+	@BeforeTest
+	public void openBrowser(String browser, String device, String version) {
+		asrt = new SoftAssert();
 		try {
 			if (browser.equalsIgnoreCase("firefox")) {
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
-				setWindowSize(w);
+				if (device.equalsIgnoreCase("laptop")) {
+					setWindowSize("laptop");
+				} else if (device.equalsIgnoreCase("tablet")) {
+					setWindowSize("tablet");
+				}
 			} else if (browser.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
-				if(w==0) {
-					runner = new VisualGridRunner(1);
+				if (device.equalsIgnoreCase("laptop")) {
+					setWindowSize("laptop");
+				} else if (device.equalsIgnoreCase("tablet")) {
+					setWindowSize("tablet");
+				} else if (device.equalsIgnoreCase("mobile")) {
+					setWindowSize("mobile");
+				} else {
+					runner = new VisualGridRunner(10);
 					eyes = new Eyes(runner);
 					eyeSetUp();
-				}else {
-					setWindowSize(w);
 				}
-				
+
 			} else if (browser.equalsIgnoreCase("edge")) {
-//				WebDriverManager.edgedriver().setup();
-//				System.out.println(WebDriverManager.edgedriver().getDownloadedVersion());
-//				System.out.println(WebDriverManager.edgedriver().getDriverVersions());
-//				System.out.println(WebDriverManager.edgedriver().getBinaryPath());
-//				ChromeOptions chromeOptions = new ChromeOptions();
-//				chromeOptions.setBinary("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
-//				EdgeOptions edgeOptions = new EdgeOptions().merge(chromeOptions);
-//				driver = new EdgeDriver(edgeOptions);
-//				setWindowSize(w);
-//				System.setProperty("webdriver.edge.driver", "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
 				System.getProperty("webdriver.edge.driver");
 				driver = new EdgeDriver();
-				setWindowSize(w);
+				if (device.equalsIgnoreCase("laptop")) {
+					setWindowSize("laptop");
+				} else if (device.equalsIgnoreCase("tablet")) {
+					setWindowSize("tablet");
+				}
 			}
-			driver.get(System.getProperty("site.url"));
+			if(version.equals("1")) {
+				driver.get(System.getProperty("site.url.v1"));
+			}else if(version.equals("2")) {
+				driver.get(System.getProperty("site.url.v2"));
+			}
+			
 		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	@AfterMethod
+	@AfterTest
 	public static void tearDown() {
 		Reporter.log("********** Test Execution End ************", true);
 		driver.close();
+//		asrt.assertAll();
 	}
 
 	@AfterSuite()
 	public static void afterSuite() {
-		driver.quit();		
-		eyes.abortIfNotClosed();
-		
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
-		System.out.println(allTestResults);
+		asrt.assertAll();
+		if(driver!=null) {
+			driver.quit();
+		}
+		if(eyes!=null) {
+			eyes.abortIfNotClosed();
+			TestResultsSummary allTestResults = runner.getAllTestResults(false);
+			System.out.println(allTestResults);
+		}
 	}
 
 	private static void eyeSetUp() {
@@ -138,29 +150,49 @@ public class BaseTests {
 		eyes.setBatch(batch);
 	}
 
-	private static void setWindowSize(int width) {
-		int height = 700;
+	private static void setWindowSize(String device) {
 		driver.manage().window().setPosition(new Point(0, 0));
-		if (width == 1200) {
-			driver.manage().window().setSize(new Dimension(width, height));
-		} else if (width == 768) {
-			driver.manage().window().setSize(new Dimension(width, height));
-		} else if (width == 500) {
-			driver.manage().window().setSize(new Dimension(width, height));
+		if (device.equalsIgnoreCase("laptop")) {
+			driver.manage().window().setSize(new Dimension(1200, 700));
+		} else if (device.equalsIgnoreCase("tablet")) {
+			driver.manage().window().setSize(new Dimension(900, 700));
+		} else if (device.equalsIgnoreCase("mobile")) {
+			driver.manage().window().setSize(new Dimension(500, 700));
 		}
 	}
 	
+	public static String viewPort(String device) {
+		String viewport = null;
+		if (device.equalsIgnoreCase("laptop")) {
+			viewport = "1200 x 700";
+		} else if (device.equalsIgnoreCase("tablet")) {
+			viewport = "900 x 700";
+		} else if (device.equalsIgnoreCase("mobile")) {
+			viewport = "500 x 700";
+		}
+		return viewport;
+	}
 
-	public static boolean hackathonReporter(int task, String testName, String domId, boolean comparisonResult, String browser, String viewport, String device) {
-	    try(BufferedWriter writer = new BufferedWriter(new FileWriter("Traditional-V1-TestResults.txt", true))){
-	        writer.write("Task: " + task + ", Test Name: " + testName +", DOM Id: " + domId + ", Browser: " + browser 
-	        		+ ", Viewport: " + viewport + ", Device: " + device + ", Status: " + (comparisonResult ? "Pass" : "Fail"));
-	        writer.newLine();
-	    }catch(Exception e){
-	        System.out.println("Error writing to report file");
-	        e.printStackTrace();
-	    }
-		//returns the result so that it can be used for further Assertions in the test code.
+	public static boolean hackathonReporter(int task, String testName, String domId, boolean comparisonResult,
+			String browser, String viewport, String device, String version) {
+		String fileName=null;
+		if(version.equals("1")) {
+			fileName="Traditional-V1-TestResults.txt";
+		}else if(version.equals("2")){
+			fileName="Traditional-V2-TestResults.txt";
+		}
+		
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+			writer.write("Task: " + task + ", Test Name: " + testName + ", DOM Id: " + domId + ", Browser: " + browser
+					+ ", Viewport: " + viewport + ", Device: " + device + ", Status: "
+					+ (comparisonResult ? "Pass" : "Fail"));
+			writer.newLine();
+		} catch (Exception e) {
+			System.out.println("Error writing to report file");
+			e.printStackTrace();
+		}
+		// returns the result so that it can be used for further Assertions in the test
+		// code.
 		return comparisonResult;
 	}
 }

@@ -4,77 +4,153 @@
 	<listeners>
 		<listener
 			class-name="com.applitools.hackathon.ufg.test.listener.TestNGListener" />
-		</listeners>
-		<test name="Firefox Test Laptop">
-			<parameter name="browser" value="Firefox" />
-			<parameter name="width" value="1200" />
-			<parameter name="device" value="Laptop"/>
-			<classes>
-				<class name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Chrome Test Laptop">
-			<parameter name="browser" value="Chrome" />
-			<parameter name="width" value="1200" />
-			<parameter name="device" value="Laptop"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Edge chromium Test Laptop">
-			<parameter name="browser" value="Edge" />
-			<parameter name="width" value="1200" />
-			<parameter name="device" value="Laptop"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Firefox Test Tablet">
-			<parameter name="browser" value="Firefox" />
-			<parameter name="width" value="768" />
-			<parameter name="device" value="Tablet"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Chrome Test Tablet">
-			<parameter name="browser" value="Chrome" />
-			<parameter name="width" value="768" />
-			<parameter name="device" value="Tablet"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Edge chromium Test Tablet">
-			<parameter name="browser" value="Edge" />
-			<parameter name="width" value="768" />
-			<parameter name="device" value="Tablet"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Chrome Test Mobile">
-			<parameter name="browser" value="Chrome" />
-			<parameter name="width" value="500" />
-			<parameter name="device" value="Mobile"/>
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
-			</classes>
-		</test>
-		<test name="Chrome Test UFG">
-			<parameter name="browser" value="Chrome" />
-			<parameter name="width" value="0" />
-			<classes>
-				<class
-					name="com.applitools.hackathon.ufg.test.ModernTestV1" />
-			</classes>
-		</test>
+	</listeners>
+	<test name="Firefox Test Laptop V1">
+		<parameter name="browser" value="Firefox" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Chrome Test Laptop V1">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Edge chromium Test Laptop V1">
+		<parameter name="browser" value="Edge" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Firefox Test Tablet V1">
+		<parameter name="browser" value="Firefox" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Chrome Test Tablet V1">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Edge chromium Test Tablet V1">
+		<parameter name="browser" value="Edge" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<test name="Chrome Test Mobile V1">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Mobile" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
+		</classes>
+	</test>
+	<!-- 
+	<test name="Chrome Test UFG V1">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="grid" />
+		<parameter name="version" value="1" />
+		<classes>
+			<class name="com.applitools.hackathon.ufg.test.ModernTestV1" />
+		</classes>
+	</test>
+	 -->
+	<test name="Firefox Test Laptop V2">
+		<parameter name="browser" value="Firefox" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Chrome Test Laptop V2">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Edge chromium Test Laptop V2">
+		<parameter name="browser" value="Edge" />
+		<parameter name="device" value="Laptop" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Firefox Test Tablet V2">
+		<parameter name="browser" value="Firefox" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Chrome Test Tablet V2">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Edge chromium Test Tablet V2">
+		<parameter name="browser" value="Edge" />
+		<parameter name="device" value="Tablet" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<test name="Chrome Test Mobile V2">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="Mobile" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class
+				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
+		</classes>
+	</test>
+	<!-- 
+	<test name="Chrome Test UFG V2">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="device" value="grid" />
+		<parameter name="version" value="2" />
+		<classes>
+			<class name="com.applitools.hackathon.ufg.test.ModernTestV2" />
+		</classes>
+	</test>
+	 -->
 </suite> <!-- Suite -->
 
 
@@ -94,3 +170,6 @@
 	</classes> </test> <test name="Chrome Test"> <parameter name="browser" value="chrome"/> 
 	<parameter name="width" value="500"/> <classes> <class name="com.pack.ParallelTest"/> 
 	</classes> </test> </suite> -->
+
+
+<!-- mvn test -Dsurefire.suiteXmlFiles=testng.xml -->

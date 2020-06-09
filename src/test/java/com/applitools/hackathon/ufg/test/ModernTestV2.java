@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import com.applitools.hackathon.ufg.common.Common;
 
 
-public class ModernTestV1 extends BaseTests{
+public class ModernTestV2 extends BaseTests{
 	@Test
 	public static void launchBrowsersUFG() {
 		Common.verifyWindowVisually("Test Modern Test.");
