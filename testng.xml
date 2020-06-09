@@ -3,7 +3,7 @@
 <suite name="Suite">
 	<listeners>
 		<listener
-			class-name="com.applitools.hackathon.ufg.test.listener.TestNGListener" />
+			class-name="com.applitools.hackathon.ufg.testnglistener.TestNGListener" />
 	</listeners>
 	<test name="Firefox Test Laptop V1">
 		<parameter name="browser" value="Firefox" />
