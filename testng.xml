@@ -58,7 +58,7 @@
 			<class
 				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
 		</classes>
-	</test>
+	</test>  
 	<test name="Chrome Test Mobile V1">
 		<parameter name="browser" value="Chrome" />
 		<parameter name="device" value="Mobile" />
@@ -152,24 +152,5 @@
 	</test>
 	 -->
 </suite> <!-- Suite -->
-
-
-<!-- <suite name="Parallel test suite"> <test name="Firefox Test"> <parameter 
-	name="browser" value="Firefox"/> <parameter name="width" value="1200"/> <classes> 
-	<class name="com.pack.ParallelTest"/> </classes> </test> <test name="Chrome 
-	Test"> <parameter name="browser" value="chrome"/> <parameter name="width" 
-	value="1200"/> <classes> <class name="com.pack.ParallelTest"/> </classes> 
-	</test> <test name="Edge chromium Test"> <parameter name="browser" value="edge"/> 
-	<parameter name="width" value="1200"/> <classes> <class name="com.pack.ParallelTest"/> 
-	</classes> </test> <test name="Firefox Test"> <parameter name="browser" value="Firefox"/> 
-	<parameter name="width" value="768"/> <classes> <class name="com.pack.ParallelTest"/> 
-	</classes> </test> <test name="Chrome Test"> <parameter name="browser" value="chrome"/> 
-	<parameter name="width" value="768"/> <classes> <class name="com.pack.ParallelTest"/> 
-	</classes> </test> <test name="Edge chromium Test"> <parameter name="browser" 
-	value="edge"/> <parameter name="width" value="768"/> <classes> <class name="com.pack.ParallelTest"/> 
-	</classes> </test> <test name="Chrome Test"> <parameter name="browser" value="chrome"/> 
-	<parameter name="width" value="500"/> <classes> <class name="com.pack.ParallelTest"/> 
-	</classes> </test> </suite> -->
-
 
 <!-- mvn test -Dsurefire.suiteXmlFiles=testng.xml -->

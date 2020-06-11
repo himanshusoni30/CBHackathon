@@ -44,8 +44,6 @@ public class FilterSection extends BaseTests {
 	private static String filterColFilterBTN = "filterBtn";
 	private static String filterColResetBTN = "resetBtn";
 	
-	private static WebDriverWait wait;
-
 	public static void filterColumn(int task, String browser, String device, SoftAssert asrt, String version) {
 		if (device.equalsIgnoreCase("laptop")) {
 			asrt.assertTrue(hackathonReporter(task, "Check Filter Column is displayed", filterCol,
@@ -107,7 +105,6 @@ public class FilterSection extends BaseTests {
 	
 	public static void checkBlackCBAndClickFilterBtn(int task, String browser, String device, SoftAssert asrt, String version) {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
-		wait = new WebDriverWait(driver, 5);
 		if(driver.findElement(By.id("SPAN__checkmark__107")).isDisplayed()) {
 			driver.findElement(By.id("SPAN__checkmark__107")).click();
 			driver.findElement(By.id(filterColFilterBTN)).click();
@@ -115,10 +112,10 @@ public class FilterSection extends BaseTests {
 					Common.checkElementIsDiplayed(driver, "product_grid"), browser, viewPort(device), device, version));
 		}else {
 			js.executeScript("arguments[0].click();", driver.findElement(By.id("ti-filter")));
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id(filterCol))));
+			Common.waitForElementVisible(driver, filterCol);
 			js.executeScript("arguments[0].click();", driver.findElement(By.id("SPAN__checkmark__107")));
 			js.executeScript("arguments[0].click();", driver.findElement(By.id(filterColFilterBTN)));
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("product_grid"))));
+			Common.waitForElementVisible(driver, "product_grid");
 			asrt.assertTrue(hackathonReporter(task, "Check Product Grid is displayed", "product_grid",
 					Common.checkElementIsDiplayed(driver, "product_grid"), browser, viewPort(device), device, version));
 		}

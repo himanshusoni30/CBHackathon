@@ -12,19 +12,14 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
@@ -37,10 +32,9 @@ import com.applitools.eyes.visualgrid.model.DeviceName;
 import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class BaseTests {
 	protected static WebDriver driver;
+	public static WebDriverWait wait;
 	public static Eyes eyes;
 	protected static SoftAssert asrt;
 	protected static Configuration suiteConfig;
@@ -65,7 +59,7 @@ public class BaseTests {
 		asrt = new SoftAssert();
 		try {
 			if (browser.equalsIgnoreCase("firefox")) {
-				WebDriverManager.firefoxdriver().setup();
+				System.getProperty("webdriver.gecko.driver");
 				driver = new FirefoxDriver();
 				if (device.equalsIgnoreCase("laptop")) {
 					setWindowSize("laptop");
@@ -73,7 +67,7 @@ public class BaseTests {
 					setWindowSize("tablet");
 				}
 			} else if (browser.equalsIgnoreCase("chrome")) {
-				WebDriverManager.chromedriver().setup();
+				System.getProperty("webdriver.chrome.driver");
 				driver = new ChromeDriver();
 				if (device.equalsIgnoreCase("laptop")) {
 					setWindowSize("laptop");
@@ -102,6 +96,8 @@ public class BaseTests {
 				driver.get(System.getProperty("site.url.v2"));
 			}
 			
+			wait = new WebDriverWait(driver,1);
+			
 		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
 		}
@@ -111,7 +107,7 @@ public class BaseTests {
 	public static void tearDown() {
 		Reporter.log("********** Test Execution End ************", true);
 		driver.close();
-//		asrt.assertAll();
+		asrt.assertAll();
 	}
 
 	@AfterSuite()
@@ -191,8 +187,6 @@ public class BaseTests {
 			System.out.println("Error writing to report file");
 			e.printStackTrace();
 		}
-		// returns the result so that it can be used for further Assertions in the test
-		// code.
 		return comparisonResult;
 	}
 }

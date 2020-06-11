@@ -1,19 +1,17 @@
 package com.applitools.hackathon.ufg.common;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.hackathon.ufg.test.BaseTests;
 
 public class Common extends BaseTests {
-	static WebDriverWait wait = null;
 	static WebElement element = null;
 	static int TIMEOUT = 5;
 
@@ -76,16 +74,45 @@ public class Common extends BaseTests {
 		} catch (NoSuchElementException e) {
 			flag = false;
 			Reporter.log("Element "+locator+" is not present.");
+		} catch (StaleElementReferenceException e) {
+			flag = false;
+			Reporter.log("Element "+locator+" is not present.");
+		}
+		return flag;
+	}
+	
+	public static boolean waitForElementVisible(WebDriver driver, String id) {
+		boolean flag = false;
+		int attempts = 0;
+		while (attempts < 2) {
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
+				if(ele!=null) {
+					flag = true;
+					break;
+				}
+			}catch(StaleElementReferenceException e) {
+				Reporter.log("Element "+id+" is not found after wait.Reason: "+e);
+			}
+			attempts++;
 		}
 		return flag;
 	}
 
 	public static boolean checkElementIsDiplayed(WebDriver driver, String id) {
 		boolean flag = false;
-		try {
-			flag = driver.findElement(By.id(id)).isDisplayed();
-		} catch (NoSuchElementException e) {
-			Reporter.log(id + " does not exist.", true);
+		int attempts = 0;
+		while (attempts < 2) {
+			try {
+				driver.findElement(By.id(id)).isDisplayed();
+				flag = true;
+				break;
+			} catch (StaleElementReferenceException e) {
+				Reporter.log("Element "+id+" is not present.Reason: "+e);
+			} catch (NoSuchElementException e) {
+				Reporter.log("Element "+id+" is not present. Reason: "+e);
+			}
+			attempts++;
 		}
 		return flag;
 	}

@@ -5,8 +5,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import com.applitools.hackathon.ufg.common.Common;
@@ -34,7 +32,6 @@ public class TrailerSection extends BaseTests {
 	private static String cpr = "LI____476";
 	
 	private static JavascriptExecutor js;
-	private static WebDriverWait w = new WebDriverWait(driver, 5);
 
 	public static void quickLinksSection(int task, String browser, String device, SoftAssert asrt, String version) {
 		asrt.assertTrue(hackathonReporter(task, "Check Quick Links section is Displayed", quickLinks,
@@ -45,13 +42,13 @@ public class TrailerSection extends BaseTests {
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(quickLinks))) {
 			js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(quickLinks)));
+
+			Common.waitForElementVisible(driver, quickLinks);
 			driver.findElement(By.id(quickLinks)).click();
 		}
 
 		List<WebElement> l = driver.findElements(By.xpath(".//*[@id='" + quickLinks + "']//ul//li"));
 		for (int i = 0; i < l.size(); i++) {
-			w.until(ExpectedConditions.visibilityOf(l.get(i)));
 			String link = l.get(i).getAttribute("id");
 			asrt.assertTrue(hackathonReporter(task, "Check " + ql[i] + " link in Quick Links section is Displayed",
 					link, Common.checkElementIsDiplayed(driver, link), browser, viewPort(device), device, version));
@@ -60,7 +57,8 @@ public class TrailerSection extends BaseTests {
 		}
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(quickLinks))) {
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(quickLinks)));
+
+			Common.waitForElementVisible(driver, quickLinks);
 			driver.findElement(By.id(quickLinks)).click();
 		}
 	}
@@ -72,15 +70,15 @@ public class TrailerSection extends BaseTests {
 				Common.verifyText(driver, "CONTACTS", contactLinksHead), browser, viewPort(device), device, version));
 
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(contactLinks))) {
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(contactLinks)));
+
+			Common.waitForElementVisible(driver, contactLinks);
 			driver.findElement(By.id(contactLinks)).click();
 		}
 
 		List<WebElement> l = driver.findElements(By.xpath(".//*[@id='" + contactLinks + "']//ul//li"));
 		for (int i = 0; i < l.size(); i++) {
-			w.until(ExpectedConditions.visibilityOf(l.get(i)));
+
 			String link = l.get(i).getAttribute("id");
-//			System.out.println(l.get(i).getText());
 			WebElement icon = driver.findElement(By.xpath(".//*[@id='" + link + "']//i"));
 
 			asrt.assertTrue(hackathonReporter(task, "Check " + iconCon[i] + " icon in Contacts section is Displayed",
@@ -94,7 +92,8 @@ public class TrailerSection extends BaseTests {
 		}
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(contactLinks))) {
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(contactLinks)));
+
+			Common.waitForElementVisible(driver, contactLinks);
 			driver.findElement(By.id(contactLinks)).click();
 		}
 	}
@@ -106,22 +105,23 @@ public class TrailerSection extends BaseTests {
 				Common.verifyText(driver, "KEEP IN TOUCH", kitHead), browser, viewPort(device), device, version));
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(kit))) {
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(kit)));
+
+			Common.waitForElementVisible(driver, kit);
 			driver.findElement(By.id(kit)).click();
 		}
 		
-//		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.id(nlTextBox))));
+		Common.waitForElementVisible(driver, nlTextBox);
 		asrt.assertTrue(hackathonReporter(task, "Check newsletter textbox in Keep In Touch section is Displayed", nlTextBox,
 				Common.checkElementIsDiplayed(driver, nlTextBox), browser, viewPort(device), device, version));
 		asrt.assertTrue(hackathonReporter(task, "Verify newsletter textbox placeholder text in Keep In Touch section", nlTextBox,
 				Common.verifyTextByAttr(driver, "Your email", nlTextBox, "placeholder"), browser, viewPort(device), device, version));
 		
-//		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.id(nlBtn))));
+		Common.waitForElementVisible(driver, nlBtn);
 		asrt.assertTrue(hackathonReporter(task, "Check newsletter button in Keep In Touch section is Displayed", nlBtn,
 				Common.checkElementIsDiplayed(driver, nlBtn), browser, viewPort(device), device, version));
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(kit))) {
-//			w.until(ExpectedConditions.elementToBeClickable(By.id(kit)));
+			Common.waitForElementVisible(driver, kit);
 			driver.findElement(By.id(kit)).click();
 		}
 	}

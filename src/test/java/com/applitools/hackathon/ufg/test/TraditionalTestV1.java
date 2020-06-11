@@ -14,8 +14,6 @@ public class TraditionalTestV1 extends BaseTests {
 	@Test
 	@Parameters({ "browser", "device", "version" })
 	public static void task1(String browser, String device, String version) {
-//		asrt = new SoftAssert();
-
 		SearchAndCartSection.logo(1, browser, device, asrt, version);
 		SearchAndCartSection.headerTopMenu(1, browser, device, asrt, version);
 		SearchAndCartSection.banner(1, browser, device, asrt, version);
@@ -28,34 +26,23 @@ public class TraditionalTestV1 extends BaseTests {
 		TrailerSection.contactSection(1, browser, device, asrt, version);
 		TrailerSection.kitSection(1, browser, device, asrt, version);
 		TrailerSection.footerElements(1, browser, device, asrt, version);
-
-//		asrt.assertAll();
 	}
 
 	@Test
 	@Parameters({ "browser", "device", "version" })
 	public static void task2(String browser, String device, String version) {
-//		asrt = new SoftAssert();
-
 		FilterSection.checkBlackCBAndClickFilterBtn(2, browser, device, asrt, version);
 		ListOfItemsSection.validateProdGridItemsTask2(2, browser, device, asrt, version);
-
-//		asrt.assertAll();
 	}
 
 	@Test
 	@Parameters({ "browser", "device","version" })
 	public static void task3(String browser, String device, String version) {
-//		asrt = new SoftAssert();
-
-//		FilterSection.checkBlackCBAndClickFilterBtn(3, browser, device, asrt, version);
 		ListOfItemsSection.clickProduct(3, browser, device, asrt, version);
 		SearchAndCartSection.logo(3, browser, device, asrt, version);
 		SearchAndCartSection.headerTopMenu(3, browser, device, asrt, version);
 		SearchAndCartSection.searchTextBoxAndButton(3, browser, device, asrt, version);
 		SearchAndCartSection.cartAcntWishListTask3(3, browser, device, asrt, version);
 		ListOfItemsSection.validateProductDetailsTask3(3, browser, device, asrt, version);
-
-//		asrt.assertAll();
 	}
 }

@@ -13,7 +13,6 @@ import com.applitools.hackathon.ufg.test.BaseTests;
 
 public class ListOfItemsSection extends BaseTests {
 	private static String gridItem = "grid_item";
-	private static WebDriverWait w = new WebDriverWait(driver, 5);
 
 	private static String[] names = { "Appli Air x Night", "Appli Air Wildwood ACG", "Appli ACG React Terra",
 			"Appli Air Zoom Alpha", "Appli Air Alpha", "Appli Air 98", "Appli Air 720", "Appli Okwahn II",
@@ -53,7 +52,6 @@ public class ListOfItemsSection extends BaseTests {
 
 	public static void validateProdGridItemsTask2(int task, String browser, String device, SoftAssert asrt,
 			String version) {
-//		w.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("IMG__imgfluid__264"))));
 		validateProdGridItems(task, browser, device, asrt, version, namesT2, newPriceT2, oldPriceT2);
 	}
 
@@ -138,17 +136,16 @@ public class ListOfItemsSection extends BaseTests {
 				Common.checkElementIsDiplayed(driver, "A____217"), browser, viewPort(device), device, version));
 		if(Common.isElementPresent(driver, By.id("A____217"))) {
 			WebElement btn = driver.findElement(By.id("A____217"));
-			w.until(ExpectedConditions.visibilityOf(btn));
 			js.executeScript("arguments[0].click();", btn);
 		}
 	}
 
 	public static void validateProductDetailsTask3(int task, String browser, String device, SoftAssert asrt,
 			String version) {
-//		w.until(ExpectedConditions.visibilityOf(driver.findElement(By.id(shoeName))));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, 300)");
 		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		Common.waitForElementVisible(driver, shoeName);
 		asrt.assertTrue(hackathonReporter(task, "Check shoe name is displayed", shoeName,
 				Common.checkElementIsDiplayed(driver, shoeName), browser, viewPort(device), device, version));
 		asrt.assertTrue(hackathonReporter(task, "Verify shoe name text", shoeName,
@@ -156,7 +153,10 @@ public class ListOfItemsSection extends BaseTests {
 
 		asrt.assertTrue(hackathonReporter(task, "Check shoe image is displayed", shoeImg,
 				Common.checkElementIsDiplayed(driver, shoeImg), browser, viewPort(device), device, version));
-
+		
+		js.executeScript("window.scrollTo(0, 300)");
+		
+		Common.waitForElementVisible(driver, addToCart);
 		asrt.assertTrue(hackathonReporter(task, "Check rating is displayed", ratings,
 				Common.checkElementIsDiplayed(driver, ratings), browser, viewPort(device), device, version));
 		asrt.assertTrue(hackathonReporter(task, "Verify review text", ratings,
@@ -164,8 +164,6 @@ public class ListOfItemsSection extends BaseTests {
 
 		asrt.assertTrue(hackathonReporter(task, "Check product description is displayed", prodDesc,
 				Common.checkElementIsDiplayed(driver, prodDesc), browser, viewPort(device), device, version));
-
-//		System.out.println(driver.findElement(By.id(prodDesc)).getText());
 
 		asrt.assertTrue(hackathonReporter(task, "Verify product description text", prodDesc,
 				Common.verifyText(driver, "SKU: MTKRY-001\n"

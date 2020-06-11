@@ -26,9 +26,9 @@ public class SearchAndCartSection extends BaseTests {
 	private static String runningButton = "LI__megamenusu__28";
 	private static String trainingButton = "LI__megamenusu__30";
 
-	private static String account = "A__accesslink__56";
-	private static String wishlist = "A__wishlist__52";
-	private static String cart = "A__cartbt__49";
+	private static String account = "LI____54";
+	private static String wishlist = "LI____51";
+	private static String cart = "LI____47";
 	private static String cartItems = "STRONG____50";
 
 	private static String sortByBar = "DIV__toolboxele__189";
@@ -36,8 +36,6 @@ public class SearchAndCartSection extends BaseTests {
 	private static String gridView = "I__tiviewgrid__202";
 	private static String listView = "I__tiviewlist__204";
 	private static String sortFilterBtn = "LI____205";
-
-	private static WebDriverWait wait;
 
 	public static void banner(int task, String browser, String device, SoftAssert asrt, String version) {
 		asrt.assertTrue(hackathonReporter(task, "Check top banner is Displayed", banner,
@@ -59,9 +57,9 @@ public class SearchAndCartSection extends BaseTests {
 			
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].click();", driver.findElement(By.id(searchIconM)));
-//			driver.findElement(By.id(searchIconM)).click();
-			wait = new WebDriverWait(driver, 5);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(searchBoxM)));
+			
+			Common.waitForElementVisible(driver, searchBoxM);
+			
 			asrt.assertTrue(hackathonReporter(task, "Check Search Text Box is Displayed.", searchBoxM,
 					Common.checkElementIsDiplayed(driver, searchBoxM), browser, viewPort(device), device, version));
 			asrt.assertTrue(hackathonReporter(task, "Verify Search Text Box placeholder text", searchBoxM,
@@ -124,8 +122,7 @@ public class SearchAndCartSection extends BaseTests {
 			asrt.assertTrue(hackathonReporter(task, "Check wishlist button is Displayed.", wishlist,
 					Common.checkElementIsDiplayed(driver, wishlist), browser, viewPort(device), device, version));
 		} else if (device.equalsIgnoreCase("tablet")) {
-			wait = new WebDriverWait(driver, 5);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(cartItems)));
+			Common.waitForElementVisible(driver, cartItems);
 			asrt.assertTrue(hackathonReporter(task, "Check cart count is Displayed.", cartItems,
 					Common.checkElementIsDiplayed(driver, cartItems), browser, viewPort(device), device, version));
 
@@ -147,8 +144,7 @@ public class SearchAndCartSection extends BaseTests {
 			asrt.assertTrue(hackathonReporter(task, "Check Tile View is Displayed.", listView,
 					Common.checkElementIsDiplayed(driver, listView), browser, viewPort(device), device, version));
 		} else if (device.equalsIgnoreCase("tablet") || device.equalsIgnoreCase("mobile")) {
-//			wait = new WebDriverWait(driver, 5);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(sortFilterBtn)));
+			Common.waitForElementVisible(driver, sortFilterBtn);
 			asrt.assertTrue(hackathonReporter(task, "Check Filter button is Displayed.", sortFilterBtn,
 					Common.checkElementIsDiplayed(driver, sortFilterBtn), browser, viewPort(device), device, version));
 
@@ -160,14 +156,21 @@ public class SearchAndCartSection extends BaseTests {
 	}
 
 	public static void cartAcntWishListTask3(int task, String browser, String device, SoftAssert asrt, String version) {
+		Common.waitForElementVisible(driver, account);
 		asrt.assertTrue(hackathonReporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
+		
+		Common.waitForElementVisible(driver, cart);
 		asrt.assertTrue(hackathonReporter(task, "Check cart button is Displayed.", cart,
 				Common.checkElementIsDiplayed(driver, cart), browser, viewPort(device), device, version));
+		
+		Common.waitForElementVisible(driver, cartItems);
 		asrt.assertTrue(hackathonReporter(task, "Check cart count is Displayed.", cartItems,
 				Common.checkElementIsDiplayed(driver, cartItems), browser, viewPort(device), device, version));
 		asrt.assertTrue(hackathonReporter(task, "Verify cart count.", cartItems,
 				Common.verifyText(driver, "2", cartItems), browser, viewPort(device), device, version));
+		
+		Common.waitForElementVisible(driver, wishlist);
 		asrt.assertTrue(hackathonReporter(task, "Check wishlist button is Displayed.", wishlist,
 				Common.checkElementIsDiplayed(driver, wishlist), browser, viewPort(device), device, version));
 	}
