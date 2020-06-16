@@ -15,6 +15,13 @@ public class Common extends BaseTests {
 	static WebElement element = null;
 	static int TIMEOUT = 5;
 
+	/**
+	 * Method: To verify text
+	 * @param driver
+	 * @param expected: Expected text
+	 * @param id: DOM Id
+	 * @return
+	 */
 	public static boolean verifyText(WebDriver driver, String expected, String id) {
 		boolean flag;
 		String actual;
@@ -35,6 +42,14 @@ public class Common extends BaseTests {
 		return flag;
 	}
 
+	/**
+	 * Method: To validate the text of element based on attribute
+	 * @param driver
+	 * @param expected: Expected text
+	 * @param id: DOM Id
+	 * @param attr: attribute of element
+	 * @return
+	 */
 	public static boolean verifyTextByAttr(WebDriver driver, String expected, String id, String attr) {
 		boolean flag;
 		String actual;
@@ -55,17 +70,29 @@ public class Common extends BaseTests {
 		return flag;	
 	}
 
-	public static boolean verifyNumbers(int expected, int actual) {
-		if (expected == actual) {
-			return true;
-		} else {
-			Reporter.log(
-					"Expected does not match with Actual. Expected Text: " + expected + " | Actual Text: " + actual,
-					true);
-			return false;
-		}
-	}
+//	/**
+//	 * Method: To validate the n
+//	 * @param expected
+//	 * @param actual
+//	 * @return
+//	 */
+//	public static boolean verifyNumbers(int expected, int actual) {
+//		if (expected == actual) {
+//			return true;
+//		} else {
+//			Reporter.log(
+//					"Expected does not match with Actual. Expected Text: " + expected + " | Actual Text: " + actual,
+//					true);
+//			return false;
+//		}
+//	}
 
+	/**
+	 * Method: To check whether Element is present
+	 * @param driver
+	 * @param locator: Element locator
+	 * @return
+	 */
 	public static boolean isElementPresent(WebDriver driver, By locator) {
 		boolean flag;
 		try {
@@ -81,6 +108,12 @@ public class Common extends BaseTests {
 		return flag;
 	}
 	
+	/**
+	 * Method: To wait for the presence of an element.
+	 * @param driver
+	 * @param id: DOM Id
+	 * @return
+	 */
 	public static boolean waitForElementVisible(WebDriver driver, String id) {
 		boolean flag = false;
 		int attempts = 0;
@@ -99,6 +132,12 @@ public class Common extends BaseTests {
 		return flag;
 	}
 
+	/**
+	 * Method: To check that Element is displayed.
+	 * @param driver
+	 * @param id: DOM Id
+	 * @return
+	 */
 	public static boolean checkElementIsDiplayed(WebDriver driver, String id) {
 		boolean flag = false;
 		int attempts = 0;
@@ -117,9 +156,18 @@ public class Common extends BaseTests {
 		return flag;
 	}
 
-	public static void verifyWindowVisually(String testName) {
+	/**
+	 * Method: To open eyes and validate results in Grid.
+	 * @param stepName: Name of Test Step
+	 * @param testName: Name of Test
+	 */
+	public static void verifyWindowVisually(String stepName, String testName) {
 		eyes.open(driver, "AppliFashion App", testName, new RectangleSize(800, 600));
-		eyes.check(Target.window().fully().withName("Main Page"));
+		if(testName.equalsIgnoreCase("Task 2") && stepName.equalsIgnoreCase("Filter Results")) {
+			eyes.check(stepName, Target.region(By.id("product_grid")));
+		}else {
+			eyes.check(stepName, Target.window().fully());
+		}
 		eyes.closeAsync();
 	}
 }

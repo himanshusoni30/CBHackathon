@@ -37,22 +37,46 @@ public class SearchAndCartSection extends BaseTests {
 	private static String listView = "I__tiviewlist__204";
 	private static String sortFilterBtn = "LI____205";
 
+	/**
+	 * Method: To validate banner (red shoe) on AppliFashion home page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void banner(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check top banner is Displayed", banner,
+		asrt.assertTrue(Reporter(task, "Check top banner is Displayed", banner,
 				Common.checkElementIsDiplayed(driver, banner), browser, viewPort(device), device, version));
 	}
 
+	/**
+	 * Method: To validate AppliFashion logo.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void logo(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check logo is Displayed", logo,
+		asrt.assertTrue(Reporter(task, "Check logo is Displayed", logo,
 				Common.checkElementIsDiplayed(driver, logo), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check logo image source", logoImg,
+		asrt.assertTrue(Reporter(task, "Check logo image source", logoImg,
 				Common.verifyTextByAttr(driver, "https://demo.applitools.com/grid/img/logo.svg", logoImg, "src"),
 				browser, viewPort(device), device, version));
 	}
 
+	/**
+	 * Method: To validate the Search box field, placeholder text and Search button
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void searchTextBoxAndButton(int task, String browser, String device, SoftAssert asrt, String version) {
 		if (device.equalsIgnoreCase("mobile")) {
-			asrt.assertTrue(hackathonReporter(task, "Check search icon is Displayed.", searchIconM,
+			asrt.assertTrue(Reporter(task, "Check search icon is Displayed.", searchIconM,
 					Common.checkElementIsDiplayed(driver, searchIconM), browser, viewPort(device), device, version));
 			
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -60,118 +84,161 @@ public class SearchAndCartSection extends BaseTests {
 			
 			Common.waitForElementVisible(driver, searchBoxM);
 			
-			asrt.assertTrue(hackathonReporter(task, "Check Search Text Box is Displayed.", searchBoxM,
+			asrt.assertTrue(Reporter(task, "Check Search Text Box is Displayed.", searchBoxM,
 					Common.checkElementIsDiplayed(driver, searchBoxM), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify Search Text Box placeholder text", searchBoxM,
+			asrt.assertTrue(Reporter(task, "Verify Search Text Box placeholder text", searchBoxM,
 					Common.verifyTextByAttr(driver, "Search over 10,000 shoes!", searchBoxM, "placeholder"), browser,
 					viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check Search Button is Displayed.", SEARCHMOBILEBTN,
+			asrt.assertTrue(Reporter(task, "Check Search Button is Displayed.", SEARCHMOBILEBTN,
 					Common.checkElementIsDiplayed(driver, SEARCHMOBILEBTN), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify Search Button text", SEARCHMOBILEBTN,
+			asrt.assertTrue(Reporter(task, "Verify Search Button text", SEARCHMOBILEBTN,
 					Common.verifyTextByAttr(driver, "Search", SEARCHMOBILEBTN, "value"), browser, viewPort(device),
 					device,version));
 
 		} else {
-			asrt.assertTrue(hackathonReporter(task, "Check Search Text Box is Displayed", searchBox,
+			asrt.assertTrue(Reporter(task, "Check Search Text Box is Displayed", searchBox,
 					Common.checkElementIsDiplayed(driver, searchBox), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify Search Text Box placeholder text", searchBox,
+			asrt.assertTrue(Reporter(task, "Verify Search Text Box placeholder text", searchBox,
 					Common.verifyTextByAttr(driver, "Search over 10,000 shoes!", searchBox, "placeholder"), browser,
 					viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check search icon is Displayed.", searchIcon,
+			asrt.assertTrue(Reporter(task, "Check search icon is Displayed.", searchIcon,
 					Common.checkElementIsDiplayed(driver, searchIcon), browser, viewPort(device), device, version));
 		}
 	}
 
+	/**
+	 * Method: To validate Header menu items and text
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void headerTopMenu(int task, String browser, String device, SoftAssert asrt, String version) {
-		if (device.equalsIgnoreCase("laptop")) {
-			asrt.assertTrue(hackathonReporter(task, "Check Top Mega menu section is displayed", topMegaMenuSection,
+//		if (device.equalsIgnoreCase("laptop")) {
+		Common.waitForElementVisible(driver, topMegaMenuSection);
+			asrt.assertTrue(Reporter(task, "Check Top Mega menu section is displayed", topMegaMenuSection,
 					Common.checkElementIsDiplayed(driver, topMegaMenuSection), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check HOME button is displayed", homeButton,
+			
+			Common.waitForElementVisible(driver, homeButton);
+			asrt.assertTrue(Reporter(task, "Check HOME button is displayed", homeButton,
 					Common.checkElementIsDiplayed(driver, homeButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify HOME button text", homeButton,
+			asrt.assertTrue(Reporter(task, "Verify HOME button text", homeButton,
 					Common.verifyText(driver, "HOME", homeButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check MEN button is displayed", menButton,
+			
+			Common.waitForElementVisible(driver, menButton);
+			asrt.assertTrue(Reporter(task, "Check MEN button is displayed", menButton,
 					Common.checkElementIsDiplayed(driver, menButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify MEN button text", menButton,
+			asrt.assertTrue(Reporter(task, "Verify MEN button text", menButton,
 					Common.verifyText(driver, "MEN", menButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check WOMEN button is displayed", womenButton,
+			
+			Common.waitForElementVisible(driver, womenButton);
+			asrt.assertTrue(Reporter(task, "Check WOMEN button is displayed", womenButton,
 					Common.checkElementIsDiplayed(driver, womenButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify WOMEN button text", womenButton,
+			asrt.assertTrue(Reporter(task, "Verify WOMEN button text", womenButton,
 					Common.verifyText(driver, "WOMEN", womenButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check RUNNING button is displayed", runningButton,
+			
+			Common.waitForElementVisible(driver, runningButton);
+			asrt.assertTrue(Reporter(task, "Check RUNNING button is displayed", runningButton,
 					Common.checkElementIsDiplayed(driver, runningButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify RUNNING button text", runningButton,
+			asrt.assertTrue(Reporter(task, "Verify RUNNING button text", runningButton,
 					Common.verifyText(driver, "RUNNING", runningButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check TRAINING button is displayed", trainingButton,
+			
+			Common.waitForElementVisible(driver, trainingButton);
+			asrt.assertTrue(Reporter(task, "Check TRAINING button is displayed", trainingButton,
 					Common.checkElementIsDiplayed(driver, trainingButton), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify TRAINING button text", trainingButton,
+			asrt.assertTrue(Reporter(task, "Verify TRAINING button text", trainingButton,
 					Common.verifyText(driver, "TRAINING", trainingButton), browser, viewPort(device), device, version));
-		}
+//		}
 	}
 
+	/**
+	 * Method: To validate Account, Wishlist and Cart icons
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void cartAcntWishList(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check account button is Displayed.", account,
+		asrt.assertTrue(Reporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check cart button is Displayed.", cart,
+		asrt.assertTrue(Reporter(task, "Check cart button is Displayed.", cart,
 				Common.checkElementIsDiplayed(driver, cart), browser, viewPort(device), device, version));
 		if (device.equalsIgnoreCase("laptop")) {
-			asrt.assertTrue(hackathonReporter(task, "Check cart count is Displayed.", cartItems,
+			asrt.assertTrue(Reporter(task, "Check cart count is Displayed.", cartItems,
 					Common.checkElementIsDiplayed(driver, cartItems), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify cart count.", cartItems,
+			asrt.assertTrue(Reporter(task, "Verify cart count.", cartItems,
 					Common.verifyText(driver, "2", cartItems), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check wishlist button is Displayed.", wishlist,
+			asrt.assertTrue(Reporter(task, "Check wishlist button is Displayed.", wishlist,
 					Common.checkElementIsDiplayed(driver, wishlist), browser, viewPort(device), device, version));
 		} else if (device.equalsIgnoreCase("tablet")) {
 			Common.waitForElementVisible(driver, cartItems);
-			asrt.assertTrue(hackathonReporter(task, "Check cart count is Displayed.", cartItems,
+			asrt.assertTrue(Reporter(task, "Check cart count is Displayed.", cartItems,
 					Common.checkElementIsDiplayed(driver, cartItems), browser, viewPort(device), device, version));
 
 			System.out.println(driver.findElement(By.id(cartItems)).getText());
 
-			asrt.assertTrue(hackathonReporter(task, "Verify cart count.", cartItems,
+			asrt.assertTrue(Reporter(task, "Verify cart count.", cartItems,
 					Common.verifyText(driver, "2", cartItems), browser, viewPort(device), device, version));
 		}
 	}
 
+	/**
+	 * Method: To validate Sort By bar and other icons in Sort By bar
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void sortBySection(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check Sort By Bar is Displayed.", sortByBar,
+		asrt.assertTrue(Reporter(task, "Check Sort By Bar is Displayed.", sortByBar,
 				Common.checkElementIsDiplayed(driver, sortByBar), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check Sort Selection DropDown is Displayed.", sortSelect,
+		asrt.assertTrue(Reporter(task, "Check Sort Selection DropDown is Displayed.", sortSelect,
 				Common.checkElementIsDiplayed(driver, sortSelect), browser, viewPort(device), device, version));
 		if (device.equalsIgnoreCase("laptop")) {
-			asrt.assertTrue(hackathonReporter(task, "Check Grid View is Displayed.", gridView,
+			asrt.assertTrue(Reporter(task, "Check Grid View is Displayed.", gridView,
 					Common.checkElementIsDiplayed(driver, gridView), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Check Tile View is Displayed.", listView,
+			asrt.assertTrue(Reporter(task, "Check Tile View is Displayed.", listView,
 					Common.checkElementIsDiplayed(driver, listView), browser, viewPort(device), device, version));
 		} else if (device.equalsIgnoreCase("tablet") || device.equalsIgnoreCase("mobile")) {
 			Common.waitForElementVisible(driver, sortFilterBtn);
-			asrt.assertTrue(hackathonReporter(task, "Check Filter button is Displayed.", sortFilterBtn,
+			asrt.assertTrue(Reporter(task, "Check Filter button is Displayed.", sortFilterBtn,
 					Common.checkElementIsDiplayed(driver, sortFilterBtn), browser, viewPort(device), device, version));
 
 			if (device.equalsIgnoreCase("tablet")) {
-				asrt.assertTrue(hackathonReporter(task, "Verify Filter button text.", sortFilterBtn,
+				asrt.assertTrue(Reporter(task, "Verify Filter button text.", sortFilterBtn,
 						Common.verifyText(driver, "Filters", sortFilterBtn), browser, viewPort(device), device, version));
 			}
 		}
 	}
 
+	/**
+	 * Method: To validate Account, Wishlist and Cart icons on Black Shoe product page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void cartAcntWishListTask3(int task, String browser, String device, SoftAssert asrt, String version) {
 		Common.waitForElementVisible(driver, account);
-		asrt.assertTrue(hackathonReporter(task, "Check account button is Displayed.", account,
+		asrt.assertTrue(Reporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
 		
 		Common.waitForElementVisible(driver, cart);
-		asrt.assertTrue(hackathonReporter(task, "Check cart button is Displayed.", cart,
+		asrt.assertTrue(Reporter(task, "Check cart button is Displayed.", cart,
 				Common.checkElementIsDiplayed(driver, cart), browser, viewPort(device), device, version));
 		
 		Common.waitForElementVisible(driver, cartItems);
-		asrt.assertTrue(hackathonReporter(task, "Check cart count is Displayed.", cartItems,
+		asrt.assertTrue(Reporter(task, "Check cart count is Displayed.", cartItems,
 				Common.checkElementIsDiplayed(driver, cartItems), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify cart count.", cartItems,
+		asrt.assertTrue(Reporter(task, "Verify cart count.", cartItems,
 				Common.verifyText(driver, "2", cartItems), browser, viewPort(device), device, version));
 		
 		Common.waitForElementVisible(driver, wishlist);
-		asrt.assertTrue(hackathonReporter(task, "Check wishlist button is Displayed.", wishlist,
+		asrt.assertTrue(Reporter(task, "Check wishlist button is Displayed.", wishlist,
 				Common.checkElementIsDiplayed(driver, wishlist), browser, viewPort(device), device, version));
 	}
 }

@@ -33,10 +33,18 @@ public class TrailerSection extends BaseTests {
 	
 	private static JavascriptExecutor js;
 
+	/**
+	 * Method: To validate Quick Links section present at bottom of Page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void quickLinksSection(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check Quick Links section is Displayed", quickLinks,
+		asrt.assertTrue(Reporter(task, "Check Quick Links section is Displayed", quickLinks,
 				Common.checkElementIsDiplayed(driver, quickLinks), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Quick Links text", quickLinksHead,
+		asrt.assertTrue(Reporter(task, "Verify Quick Links text", quickLinksHead,
 				Common.verifyText(driver, "QUICK LINKS", quickLinksHead), browser, viewPort(device), device, version));
 
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(quickLinks))) {
@@ -50,9 +58,9 @@ public class TrailerSection extends BaseTests {
 		List<WebElement> l = driver.findElements(By.xpath(".//*[@id='" + quickLinks + "']//ul//li"));
 		for (int i = 0; i < l.size(); i++) {
 			String link = l.get(i).getAttribute("id");
-			asrt.assertTrue(hackathonReporter(task, "Check " + ql[i] + " link in Quick Links section is Displayed",
+			asrt.assertTrue(Reporter(task, "Check " + ql[i] + " link in Quick Links section is Displayed",
 					link, Common.checkElementIsDiplayed(driver, link), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify text of " + ql[i] + " link in Quick Links section", link,
+			asrt.assertTrue(Reporter(task, "Verify text of " + ql[i] + " link in Quick Links section", link,
 					Common.verifyText(driver, ql[i], link), browser, viewPort(device), device, version));
 		}
 		
@@ -63,10 +71,18 @@ public class TrailerSection extends BaseTests {
 		}
 	}
 
+	/**
+	 * Method: To validate Contact section present at bottom of Page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void contactSection(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check Contacts section is Displayed", contactLinks,
+		asrt.assertTrue(Reporter(task, "Check Contacts section is Displayed", contactLinks,
 				Common.checkElementIsDiplayed(driver, contactLinks), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Contacts text", contactLinksHead,
+		asrt.assertTrue(Reporter(task, "Verify Contacts text", contactLinksHead,
 				Common.verifyText(driver, "CONTACTS", contactLinksHead), browser, viewPort(device), device, version));
 
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(contactLinks))) {
@@ -81,13 +97,13 @@ public class TrailerSection extends BaseTests {
 			String link = l.get(i).getAttribute("id");
 			WebElement icon = driver.findElement(By.xpath(".//*[@id='" + link + "']//i"));
 
-			asrt.assertTrue(hackathonReporter(task, "Check " + iconCon[i] + " icon in Contacts section is Displayed",
+			asrt.assertTrue(Reporter(task, "Check " + iconCon[i] + " icon in Contacts section is Displayed",
 					icon.getAttribute("id"), Common.checkElementIsDiplayed(driver, icon.getAttribute("id")), browser,
 					viewPort(device), device, version));
 
-			asrt.assertTrue(hackathonReporter(task, "Check " + cl[i] + " in Contacts section is Displayed", link,
+			asrt.assertTrue(Reporter(task, "Check " + cl[i] + " in Contacts section is Displayed", link,
 					Common.checkElementIsDiplayed(driver, link), browser, viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify text of " + cl[i] + " in Contacts section", link,
+			asrt.assertTrue(Reporter(task, "Verify text of " + cl[i] + " in Contacts section", link,
 					Common.verifyText(driver, cl[i], link), browser, viewPort(device), device, version));
 		}
 		
@@ -98,10 +114,18 @@ public class TrailerSection extends BaseTests {
 		}
 	}
 	
+	/**
+	 * Method: To validate Keep In Touch section present at bottom of Page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void kitSection(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check Keep In Touch section is Displayed", kit,
+		asrt.assertTrue(Reporter(task, "Check Keep In Touch section is Displayed", kit,
 				Common.checkElementIsDiplayed(driver, kit), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Keep In Touch text", kitHead,
+		asrt.assertTrue(Reporter(task, "Verify Keep In Touch text", kitHead,
 				Common.verifyText(driver, "KEEP IN TOUCH", kitHead), browser, viewPort(device), device, version));
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(kit))) {
@@ -111,13 +135,13 @@ public class TrailerSection extends BaseTests {
 		}
 		
 		Common.waitForElementVisible(driver, nlTextBox);
-		asrt.assertTrue(hackathonReporter(task, "Check newsletter textbox in Keep In Touch section is Displayed", nlTextBox,
+		asrt.assertTrue(Reporter(task, "Check newsletter textbox in Keep In Touch section is Displayed", nlTextBox,
 				Common.checkElementIsDiplayed(driver, nlTextBox), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify newsletter textbox placeholder text in Keep In Touch section", nlTextBox,
+		asrt.assertTrue(Reporter(task, "Verify newsletter textbox placeholder text in Keep In Touch section", nlTextBox,
 				Common.verifyTextByAttr(driver, "Your email", nlTextBox, "placeholder"), browser, viewPort(device), device, version));
 		
 		Common.waitForElementVisible(driver, nlBtn);
-		asrt.assertTrue(hackathonReporter(task, "Check newsletter button in Keep In Touch section is Displayed", nlBtn,
+		asrt.assertTrue(Reporter(task, "Check newsletter button in Keep In Touch section is Displayed", nlBtn,
 				Common.checkElementIsDiplayed(driver, nlBtn), browser, viewPort(device), device, version));
 		
 		if (device.equalsIgnoreCase("mobile") && Common.isElementPresent(driver, By.id(kit))) {
@@ -126,25 +150,33 @@ public class TrailerSection extends BaseTests {
 		}
 	}
 	
+	/**
+	 * Method: To validate Language, Currency, Terms and Condition, Privacy and Copyright fields present at bottom of Page.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void footerElements(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(hackathonReporter(task, "Check language selector is Displayed", lang,
+		asrt.assertTrue(Reporter(task, "Check language selector is Displayed", lang,
 				Common.checkElementIsDiplayed(driver, lang), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check currency dropdown is Displayed", currency,
+		asrt.assertTrue(Reporter(task, "Check currency dropdown is Displayed", currency,
 				Common.checkElementIsDiplayed(driver, currency), browser, viewPort(device), device, version));
 		
-		asrt.assertTrue(hackathonReporter(task, "Check Terms and Conditions is Displayed", tnc,
+		asrt.assertTrue(Reporter(task, "Check Terms and Conditions is Displayed", tnc,
 				Common.checkElementIsDiplayed(driver, tnc), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Terms and Conditions text", tnc,
+		asrt.assertTrue(Reporter(task, "Verify Terms and Conditions text", tnc,
 				Common.verifyText(driver, "Terms and conditions", tnc), browser, viewPort(device), device, version));
 		
-		asrt.assertTrue(hackathonReporter(task, "Check Privacy is Displayed", privacy,
+		asrt.assertTrue(Reporter(task, "Check Privacy is Displayed", privacy,
 				Common.checkElementIsDiplayed(driver, privacy), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Privacy text", privacy,
+		asrt.assertTrue(Reporter(task, "Verify Privacy text", privacy,
 				Common.verifyText(driver, "Privacy", privacy), browser, viewPort(device), device, version));
 		
-		asrt.assertTrue(hackathonReporter(task, "Check Copyright is Displayed", cpr,
+		asrt.assertTrue(Reporter(task, "Check Copyright is Displayed", cpr,
 				Common.checkElementIsDiplayed(driver, cpr), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Copyright text", cpr,
+		asrt.assertTrue(Reporter(task, "Verify Copyright text", cpr,
 				Common.verifyText(driver, "© 2020 Applitools", cpr), browser, viewPort(device), device, version));
 	}
 }

@@ -15,7 +15,9 @@ public class TraditionalTestV1 extends BaseTests {
 	@Parameters({ "browser", "device", "version" })
 	public static void task1(String browser, String device, String version) {
 		SearchAndCartSection.logo(1, browser, device, asrt, version);
-		SearchAndCartSection.headerTopMenu(1, browser, device, asrt, version);
+		if(device.equalsIgnoreCase("laptop")) {
+			SearchAndCartSection.headerTopMenu(1, browser, device, asrt, version);
+		}
 		SearchAndCartSection.banner(1, browser, device, asrt, version);
 		SearchAndCartSection.sortBySection(1, browser, device, asrt, version);
 		SearchAndCartSection.searchTextBoxAndButton(1, browser, device, asrt, version);
@@ -36,11 +38,11 @@ public class TraditionalTestV1 extends BaseTests {
 	}
 
 	@Test
-	@Parameters({ "browser", "device","version" })
+	@Parameters({ "browser", "device", "version" })
 	public static void task3(String browser, String device, String version) {
 		ListOfItemsSection.clickProduct(3, browser, device, asrt, version);
 		SearchAndCartSection.logo(3, browser, device, asrt, version);
-		SearchAndCartSection.headerTopMenu(3, browser, device, asrt, version);
+//		SearchAndCartSection.headerTopMenu(3, browser, device, asrt, version);
 		SearchAndCartSection.searchTextBoxAndButton(3, browser, device, asrt, version);
 		SearchAndCartSection.cartAcntWishListTask3(3, browser, device, asrt, version);
 		ListOfItemsSection.validateProductDetailsTask3(3, browser, device, asrt, version);

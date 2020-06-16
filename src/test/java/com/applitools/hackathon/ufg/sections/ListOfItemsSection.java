@@ -45,16 +45,40 @@ public class ListOfItemsSection extends BaseTests {
 
 	private static String addToCart = "A__btn__114";
 
+	/**
+	 * Method: To validate product grid items for Task 1.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void validateProdGridItemsTask1(int task, String browser, String device, SoftAssert asrt,
 			String version) {
 		validateProdGridItems(task, browser, device, asrt, version, names, newPrice, oldPrice);
 	}
 
+	/**
+	 * Method: To validate product grid items for Task 2.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void validateProdGridItemsTask2(int task, String browser, String device, SoftAssert asrt,
 			String version) {
 		validateProdGridItems(task, browser, device, asrt, version, namesT2, newPriceT2, oldPriceT2);
 	}
 
+	/**
+	 * Method: To validate contents of each product in product grid items.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void validateProdGridItems(int task, String browser, String device, SoftAssert asrt, String version,
 			String[] allNames, String[] allNP, String[] allOP) {
 		List<WebElement> products = driver.findElements(By.className(gridItem));// *[@id="DIV__griditem__211"]//span[@class='new_price']
@@ -64,27 +88,27 @@ public class ListOfItemsSection extends BaseTests {
 			gridId = products.get(i).getAttribute("id");
 
 			header = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//h3"));
-			asrt.assertTrue(hackathonReporter(task, "Check header label is displayed", header.getAttribute("id"),
+			asrt.assertTrue(Reporter(task, "Check header label is displayed", header.getAttribute("id"),
 					Common.checkElementIsDiplayed(driver, header.getAttribute("id")), browser, viewPort(device),
 					device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify header label text", header.getAttribute("id"),
+			asrt.assertTrue(Reporter(task, "Verify header label text", header.getAttribute("id"),
 					Common.verifyText(driver, allNames[i], header.getAttribute("id")), browser, viewPort(device),
 					device, version));
 
 			np = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//span[@class=\"new_price\"]"));
-			asrt.assertTrue(hackathonReporter(task, "Check price label is displayed for product " + allNames[i],
+			asrt.assertTrue(Reporter(task, "Check price label is displayed for product " + allNames[i],
 					np.getAttribute("id"), Common.checkElementIsDiplayed(driver, np.getAttribute("id")), browser,
 					viewPort(device), device, version));
-			asrt.assertTrue(hackathonReporter(task, "Verify price label text for product " + allNames[i],
+			asrt.assertTrue(Reporter(task, "Verify price label text for product " + allNames[i],
 					np.getAttribute("id"), Common.verifyText(driver, allNP[i], np.getAttribute("id")), browser,
 					viewPort(device), device, version));
 
 			if (Common.isElementPresent(driver, By.xpath(".//*[@id=\"" + gridId + "\"]//span[@class=\"old_price\"]"))) {
 				op = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//span[@class=\"old_price\"]"));
-				asrt.assertTrue(hackathonReporter(task, "Check old price label is displayed for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Check old price label is displayed for product " + allNames[i],
 						op.getAttribute("id"), Common.checkElementIsDiplayed(driver, op.getAttribute("id")), browser,
 						viewPort(device), device, version));
-				asrt.assertTrue(hackathonReporter(task, "Verify old price label text for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Verify old price label text for product " + allNames[i],
 						op.getAttribute("id"), Common.verifyText(driver, allOP[i], op.getAttribute("id")), browser,
 						viewPort(device), device, version));
 			}
@@ -92,21 +116,21 @@ public class ListOfItemsSection extends BaseTests {
 			if (Common.isElementPresent(driver,
 					By.xpath(".//*[@id=\"" + gridId + "\"]//span[@class=\"ribbon off\"]"))) {
 				ribbon = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//span[@class=\"ribbon off\"]"));
-				asrt.assertTrue(hackathonReporter(task, "Check discount ribbon is displayed for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Check discount ribbon is displayed for product " + allNames[i],
 						ribbon.getAttribute("id"), Common.checkElementIsDiplayed(driver, ribbon.getAttribute("id")),
 						browser, viewPort(device), device, version));
-				asrt.assertTrue(hackathonReporter(task, "Verify discount ribbon text for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Verify discount ribbon text for product " + allNames[i],
 						ribbon.getAttribute("id"), Common.verifyText(driver, "-30%", ribbon.getAttribute("id")),
 						browser, viewPort(device), device, version));
 			}
 
 			if (Common.isElementPresent(driver, By.xpath(".//*[@id=\"" + gridId + "\"]//div[@class=\"countdown\"]"))) {
 				countdown = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//div[@class=\"countdown\"]"));
-				asrt.assertTrue(hackathonReporter(task, "Check countdown label is displayed for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Check countdown label is displayed for product " + allNames[i],
 						countdown.getAttribute("id"),
 						Common.checkElementIsDiplayed(driver, countdown.getAttribute("id")), browser, viewPort(device),
 						device, version));
-				asrt.assertTrue(hackathonReporter(task, "Verify countdown label text for product " + allNames[i],
+				asrt.assertTrue(Reporter(task, "Verify countdown label text for product " + allNames[i],
 						countdown.getAttribute("id"),
 						Common.verifyText(driver, "1 day left", countdown.getAttribute("id")), browser,
 						viewPort(device), device, version));
@@ -118,97 +142,125 @@ public class ListOfItemsSection extends BaseTests {
 				for (int j = 0; j < ele.size(); j++) {
 					li = ele.get(j).getAttribute("id");
 					iconName = driver.findElement(By.xpath(".//*[@id=\"" + li + "\"]//span")).getText();
-					asrt.assertTrue(hackathonReporter(task,
+					asrt.assertTrue(Reporter(task,
 							"Check icon " + iconName + " is displayed for product " + allNames[i], li,
 							Common.checkElementIsDiplayed(driver, li), browser, viewPort(device), device, version));
-					asrt.assertTrue(hackathonReporter(task, "Verify icon text for product " + allNames[i], li,
+					asrt.assertTrue(Reporter(task, "Verify icon text for product " + allNames[i], li,
 							Common.verifyText(driver, iconName, li), browser, viewPort(device), device, version));
 				}
 			}
 		}
 	}
 
+	/**
+	 * Method: To click on Black shoe product
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void clickProduct(int task, String browser, String device, SoftAssert asrt,
 			String version) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, 300)");
-		asrt.assertTrue(hackathonReporter(task, "Check Appli Air x Night shoe image is displayed", "A____217",
+		asrt.assertTrue(Reporter(task, "Check Appli Air x Night shoe image is displayed", "A____217",
 				Common.checkElementIsDiplayed(driver, "A____217"), browser, viewPort(device), device, version));
 		if(Common.isElementPresent(driver, By.id("A____217"))) {
 			WebElement btn = driver.findElement(By.id("A____217"));
 			js.executeScript("arguments[0].click();", btn);
 		}
 	}
+	
+	/**
+	 * Method: To click on Black shoe product for Modern Test without assertions
+	 */
+	public static void clickProductForMT() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 300)");
+		if(Common.isElementPresent(driver, By.id("A____217"))) {
+			WebElement btn = driver.findElement(By.id("A____217"));
+			js.executeScript("arguments[0].click();", btn);
+		}
+	}
 
+	/**
+	 * Method: To validate Black Shoe product details.
+	 * @param task: 1, 2 or 3
+	 * @param browser: Chrome, Firefox or Edge
+	 * @param device: Laptop, Tablet or Mobile
+	 * @param asrt: 
+	 * @param version: 1 or 2
+	 */
 	public static void validateProductDetailsTask3(int task, String browser, String device, SoftAssert asrt,
 			String version) {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		Common.waitForElementVisible(driver, shoeName);
-		asrt.assertTrue(hackathonReporter(task, "Check shoe name is displayed", shoeName,
+		asrt.assertTrue(Reporter(task, "Check shoe name is displayed", shoeName,
 				Common.checkElementIsDiplayed(driver, shoeName), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify shoe name text", shoeName,
+		asrt.assertTrue(Reporter(task, "Verify shoe name text", shoeName,
 				Common.verifyText(driver, "Appli Air x Night", shoeName), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check shoe image is displayed", shoeImg,
+		asrt.assertTrue(Reporter(task, "Check shoe image is displayed", shoeImg,
 				Common.checkElementIsDiplayed(driver, shoeImg), browser, viewPort(device), device, version));
 		
 		js.executeScript("window.scrollTo(0, 300)");
 		
 		Common.waitForElementVisible(driver, addToCart);
-		asrt.assertTrue(hackathonReporter(task, "Check rating is displayed", ratings,
+		asrt.assertTrue(Reporter(task, "Check rating is displayed", ratings,
 				Common.checkElementIsDiplayed(driver, ratings), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify review text", ratings,
+		asrt.assertTrue(Reporter(task, "Verify review text", ratings,
 				Common.verifyText(driver, "4 reviews", ratings), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check product description is displayed", prodDesc,
+		asrt.assertTrue(Reporter(task, "Check product description is displayed", prodDesc,
 				Common.checkElementIsDiplayed(driver, prodDesc), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Verify product description text", prodDesc,
+		asrt.assertTrue(Reporter(task, "Verify product description text", prodDesc,
 				Common.verifyText(driver, "SKU: MTKRY-001\n"
 						+ "These boots are comfortable enough to wear all day. Well made. I love the “look”. Best Used For Casual Everyday Walk fearlessly into the cooler months in the Sorel Joan Of Arctic Wedge II Chelsea Boot. Boasting the iconic wedge platform that's as comfortable as it is stylish, this boot features a waterproof upper",
 						prodDesc),
 				browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Size label is displayed", sizeLabel,
+		asrt.assertTrue(Reporter(task, "Check Size label is displayed", sizeLabel,
 				Common.checkElementIsDiplayed(driver, sizeLabel), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Size label text", sizeLabel,
+		asrt.assertTrue(Reporter(task, "Verify Size label text", sizeLabel,
 				Common.verifyText(driver, "Size", sizeLabel), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Quantity label is displayed", quanLabel,
+		asrt.assertTrue(Reporter(task, "Check Quantity label is displayed", quanLabel,
 				Common.checkElementIsDiplayed(driver, quanLabel), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Quantity label text", quanLabel,
+		asrt.assertTrue(Reporter(task, "Verify Quantity label text", quanLabel,
 				Common.verifyText(driver, "Quantity", quanLabel), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Size dropdown is displayed", sizeDD,
+		asrt.assertTrue(Reporter(task, "Check Size dropdown is displayed", sizeDD,
 				Common.checkElementIsDiplayed(driver, sizeDD), browser, viewPort(device), device, version));
 		
-//		asrt.assertTrue(hackathonReporter(task, "Verify Size dropdown default text", quanLabel,
+//		asrt.assertTrue(Reporter(task, "Verify Size dropdown default text", quanLabel,
 //				driver.findElement(By.xpath("//div[@class='nice-select wide']")).getText().equalsIgnoreCase("Small (S)"),
 //				browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Quantity increase decrease bar is displayed", quanBar,
+		asrt.assertTrue(Reporter(task, "Check Quantity increase decrease bar is displayed", quanBar,
 				Common.checkElementIsDiplayed(driver, quanBar), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Quantity default value", quanDDVal,
+		asrt.assertTrue(Reporter(task, "Verify Quantity default value", quanDDVal,
 				Common.verifyTextByAttr(driver, "1", quanDDVal, "value"), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check Quantity increase button is displayed", quanDDInc,
+		asrt.assertTrue(Reporter(task, "Check Quantity increase button is displayed", quanDDInc,
 				Common.checkElementIsDiplayed(driver, quanDDInc), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Check Quantity decrease button is displayed", quanDDDec,
+		asrt.assertTrue(Reporter(task, "Check Quantity decrease button is displayed", quanDDDec,
 				Common.checkElementIsDiplayed(driver, quanDDDec), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Price bar is displayed", priceBar,
+		asrt.assertTrue(Reporter(task, "Check Price bar is displayed", priceBar,
 				Common.checkElementIsDiplayed(driver, priceBar), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify New Price value", nPrice,
+		asrt.assertTrue(Reporter(task, "Verify New Price value", nPrice,
 				Common.verifyText(driver, "$33.00", nPrice), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Old Price value", oPrice,
+		asrt.assertTrue(Reporter(task, "Verify Old Price value", oPrice,
 				Common.verifyText(driver, "$48.00", oPrice), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Discount value", discount,
+		asrt.assertTrue(Reporter(task, "Verify Discount value", discount,
 				Common.verifyText(driver, "-30% discount", discount), browser, viewPort(device), device, version));
 
-		asrt.assertTrue(hackathonReporter(task, "Check Add to Cart button is displayed", addToCart,
+		asrt.assertTrue(Reporter(task, "Check Add to Cart button is displayed", addToCart,
 				Common.checkElementIsDiplayed(driver, addToCart), browser, viewPort(device), device, version));
-		asrt.assertTrue(hackathonReporter(task, "Verify Add To Cart button text", addToCart,
+		asrt.assertTrue(Reporter(task, "Verify Add To Cart button text", addToCart,
 				Common.verifyText(driver, "Add to Cart", addToCart), browser, viewPort(device), device, version));
 	}
 }
