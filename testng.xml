@@ -151,7 +151,6 @@
 			<class name="com.applitools.hackathon.ufg.test.ModernTestV2" />
 		</classes>
 	</test>
-	 
 </suite> <!-- Suite -->
 
 <!-- mvn test -Dsurefire.suiteXmlFiles=testng.xml -->

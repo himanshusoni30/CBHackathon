@@ -22,7 +22,7 @@ public class ModernTestV1 extends BaseTests{
 	
 	@Test
 	public static void task3() {
-		ListOfItemsSection.clickProductForMT();
+		ListOfItemsSection.clickProductForMT("1");
 		Common.verifyWindowVisually("Product Details test", "Task 3");
 	}
 }

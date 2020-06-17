@@ -12,8 +12,6 @@ import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.hackathon.ufg.test.BaseTests;
 
 public class Common extends BaseTests {
-	static WebElement element = null;
-	static int TIMEOUT = 5;
 
 	/**
 	 * Method: To verify text
@@ -69,23 +67,6 @@ public class Common extends BaseTests {
 		}
 		return flag;	
 	}
-
-//	/**
-//	 * Method: To validate the n
-//	 * @param expected
-//	 * @param actual
-//	 * @return
-//	 */
-//	public static boolean verifyNumbers(int expected, int actual) {
-//		if (expected == actual) {
-//			return true;
-//		} else {
-//			Reporter.log(
-//					"Expected does not match with Actual. Expected Text: " + expected + " | Actual Text: " + actual,
-//					true);
-//			return false;
-//		}
-//	}
 
 	/**
 	 * Method: To check whether Element is present
@@ -157,7 +138,7 @@ public class Common extends BaseTests {
 	}
 
 	/**
-	 * Method: To open eyes and validate results in Grid.
+	 * Method: To open eyes and validate results.
 	 * @param stepName: Name of Test Step
 	 * @param testName: Name of Test
 	 */

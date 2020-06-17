@@ -149,6 +149,21 @@ public class ListOfItemsSection extends BaseTests {
 							Common.verifyText(driver, iconName, li), browser, viewPort(device), device, version));
 				}
 			}
+			
+			//To validate heart, cart and shuffle icons in grid
+			if (device.equalsIgnoreCase("mobile") || device.equalsIgnoreCase("tablet")) {
+				List<WebElement> ele = driver.findElements(By.xpath(".//*[@id=\"UL____222\"]//ul//li"));
+				String li, iconName;
+				for (int j = 0; j < ele.size(); j++) {
+					li = ele.get(j).getAttribute("id");
+					iconName = driver.findElement(By.xpath(".//*[@id=\"" + li + "\"]//span")).getText();
+					asrt.assertTrue(Reporter(task,
+							"Check icon " + iconName + " is displayed for product " + allNames[i], li,
+							Common.checkElementIsDiplayed(driver, li), browser, viewPort(device), device, version));
+					asrt.assertTrue(Reporter(task, "Verify icon text for product " + allNames[i], li,
+							Common.verifyText(driver, iconName, ".//*[@id=\"" + li + "\"]//span"), browser, viewPort(device), device, version));
+				}
+			}
 		}
 	}
 
@@ -162,12 +177,19 @@ public class ListOfItemsSection extends BaseTests {
 	 */
 	public static void clickProduct(int task, String browser, String device, SoftAssert asrt,
 			String version) {
+		String id=null;
+		if(version.equals("1")) {
+			id="A____217";
+		}else if(version.equals("2")) {
+			id="A____218";
+		}
+		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, 300)");
-		asrt.assertTrue(Reporter(task, "Check Appli Air x Night shoe image is displayed", "A____217",
-				Common.checkElementIsDiplayed(driver, "A____217"), browser, viewPort(device), device, version));
-		if(Common.isElementPresent(driver, By.id("A____217"))) {
-			WebElement btn = driver.findElement(By.id("A____217"));
+		asrt.assertTrue(Reporter(task, "Check Appli Air x Night shoe image is displayed", id,
+				Common.checkElementIsDiplayed(driver, id), browser, viewPort(device), device, version));
+		if(Common.isElementPresent(driver, By.id(id))) {
+			WebElement btn = driver.findElement(By.id(id));
 			js.executeScript("arguments[0].click();", btn);
 		}
 	}
@@ -175,11 +197,17 @@ public class ListOfItemsSection extends BaseTests {
 	/**
 	 * Method: To click on Black shoe product for Modern Test without assertions
 	 */
-	public static void clickProductForMT() {
+	public static void clickProductForMT(String version) {
+		String id=null;
+		if(version.equals("1")) {
+			id="A____217";
+		}else if(version.equals("2")) {
+			id="A____218";
+		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, 300)");
-		if(Common.isElementPresent(driver, By.id("A____217"))) {
-			WebElement btn = driver.findElement(By.id("A____217"));
+		if(Common.isElementPresent(driver, By.id(id))) {
+			WebElement btn = driver.findElement(By.id(id));
 			js.executeScript("arguments[0].click();", btn);
 		}
 	}
@@ -197,6 +225,7 @@ public class ListOfItemsSection extends BaseTests {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
+		js.executeScript("window.scrollTo(0, 0)");
 		Common.waitForElementVisible(driver, shoeName);
 		asrt.assertTrue(Reporter(task, "Check shoe name is displayed", shoeName,
 				Common.checkElementIsDiplayed(driver, shoeName), browser, viewPort(device), device, version));

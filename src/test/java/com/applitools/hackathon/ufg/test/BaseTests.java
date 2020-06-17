@@ -41,6 +41,7 @@ public class BaseTests {
 	protected static BatchInfo batch;
 	protected static Properties props;
 	public static VisualGridRunner runner;
+	static int TIMEOUT = 3;
 
 	/**
 	 * Method: To load properties for test.properties file
@@ -106,7 +107,7 @@ public class BaseTests {
 				driver.get(System.getProperty("site.url.v2"));
 			}
 			
-			wait = new WebDriverWait(driver,1);
+			wait = new WebDriverWait(driver,TIMEOUT);
 			
 		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
