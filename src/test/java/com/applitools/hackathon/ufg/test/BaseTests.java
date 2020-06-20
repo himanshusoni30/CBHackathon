@@ -130,14 +130,14 @@ public class BaseTests {
 	@AfterSuite()
 	public static void afterSuite() {
 		asrt.assertAll();
-		if(driver!=null) {
-			driver.quit();
-		}
+		
 		if(eyes!=null) {
 			eyes.abortIfNotClosed();
 			TestResultsSummary allTestResults = runner.getAllTestResults(false);
 			System.out.println(allTestResults);
 		}
+		
+		driver.quit();
 	}
 
 	/**
