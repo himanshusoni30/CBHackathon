@@ -32,7 +32,7 @@
 				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
 		</classes>
 	</test>
-	
+
 	<test name="Firefox Test Tablet V1">
 		<parameter name="browser" value="Firefox" />
 		<parameter name="device" value="Tablet" />
@@ -61,7 +61,7 @@
 			<class
 				name="com.applitools.hackathon.ufg.test.TraditionalTestV1" />
 		</classes>
-	</test>  
+	</test>
 	<test name="Chrome Test Mobile V1">
 		<parameter name="browser" value="Chrome" />
 		<parameter name="device" value="Mobile" />
@@ -107,6 +107,7 @@
 				name="com.applitools.hackathon.ufg.test.TraditionalTestV2" />
 		</classes>
 	</test>
+
 	<test name="Firefox Test Tablet V2">
 		<parameter name="browser" value="Firefox" />
 		<parameter name="device" value="Tablet" />

@@ -85,6 +85,7 @@ public class ListOfItemsSection extends BaseTests {
 		String gridId;
 		WebElement ribbon, countdown, header, np, op;
 		for (int i = 0; i < products.size(); i++) {
+			
 			gridId = products.get(i).getAttribute("id");
 
 			header = driver.findElement(By.xpath(".//*[@id=\"" + gridId + "\"]//h3"));

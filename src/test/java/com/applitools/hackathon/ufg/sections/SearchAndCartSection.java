@@ -10,6 +10,7 @@ import com.applitools.hackathon.ufg.test.BaseTests;
 
 public class SearchAndCartSection extends BaseTests {
 	private static String banner = "DIV__topbanner__187";
+	private static String bannerv2 = "DIV__topbanner__188";
 
 	private static String logo = "logo";
 	private static String logoImg = "IMG____9";
@@ -32,10 +33,17 @@ public class SearchAndCartSection extends BaseTests {
 //	private static String cartItems = "STRONG____50";
 
 	private static String sortByBar = "DIV__toolboxele__189";
+	private static String sortByBarv2 = "DIV__toolboxele__190";
 	private static String sortSelect = "DIV__sortselect__193";
+	private static String sortSelectv2 = "DIV__sortselect__194";
 	private static String gridView = "I__tiviewgrid__202";
 	private static String listView = "I__tiviewlist__204";
+	private static String gridViewv2 = "I__tiviewgrid__203";
+	private static String listViewv2 = "I__tiviewlist__205";
 	private static String sortFilterBtn = "LI____205";
+	private static String sortFilterBtnv2 = "LI____206";
+	
+	private static JavascriptExecutor js;
 
 	/**
 	 * Method: To validate banner (red shoe) on AppliFashion home page.
@@ -47,8 +55,14 @@ public class SearchAndCartSection extends BaseTests {
 	 * @param version: 1 or 2
 	 */
 	public static void banner(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(Reporter(task, "Check top banner is Displayed", banner,
-				Common.checkElementIsDiplayed(driver, banner), browser, viewPort(device), device, version));
+		if (version.equalsIgnoreCase("1")) {
+			asrt.assertTrue(Reporter(task, "Check top banner is Displayed", banner,
+					Common.checkElementIsDiplayed(driver, banner), browser, viewPort(device), device, version));
+		} else if (version.equalsIgnoreCase("2")) {
+			asrt.assertTrue(Reporter(task, "Check top banner is Displayed", bannerv2,
+					Common.checkElementIsDiplayed(driver, bannerv2), browser, viewPort(device), device, version));
+		}
+
 	}
 
 	/**
@@ -166,8 +180,11 @@ public class SearchAndCartSection extends BaseTests {
 	 * @param version: 1 or 2
 	 */
 	public static void cartAcntWishList(int task, String browser, String device, SoftAssert asrt, String version) {
+		js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 300)");
 		asrt.assertTrue(Reporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
+		Common.waitForElementVisible(driver, cart);
 		asrt.assertTrue(Reporter(task, "Check cart button is Displayed.", cart,
 				Common.checkElementIsDiplayed(driver, cart), browser, viewPort(device), device, version));
 		if (device.equalsIgnoreCase("laptop")) {
@@ -192,24 +209,56 @@ public class SearchAndCartSection extends BaseTests {
 	 * @param version: 1 or 2
 	 */
 	public static void sortBySection(int task, String browser, String device, SoftAssert asrt, String version) {
-		asrt.assertTrue(Reporter(task, "Check Sort By Bar is Displayed.", sortByBar,
-				Common.checkElementIsDiplayed(driver, sortByBar), browser, viewPort(device), device, version));
-		asrt.assertTrue(Reporter(task, "Check Sort Selection DropDown is Displayed.", sortSelect,
-				Common.checkElementIsDiplayed(driver, sortSelect), browser, viewPort(device), device, version));
-		if (device.equalsIgnoreCase("laptop")) {
-			asrt.assertTrue(Reporter(task, "Check Grid View is Displayed.", gridView,
-					Common.checkElementIsDiplayed(driver, gridView), browser, viewPort(device), device, version));
-			asrt.assertTrue(Reporter(task, "Check Tile View is Displayed.", listView,
-					Common.checkElementIsDiplayed(driver, listView), browser, viewPort(device), device, version));
-		} else if (device.equalsIgnoreCase("tablet") || device.equalsIgnoreCase("mobile")) {
-			Common.waitForElementVisible(driver, sortFilterBtn);
-			asrt.assertTrue(Reporter(task, "Check Filter button is Displayed.", sortFilterBtn,
-					Common.checkElementIsDiplayed(driver, sortFilterBtn), browser, viewPort(device), device, version));
 
-			if (device.equalsIgnoreCase("tablet")) {
-				asrt.assertTrue(Reporter(task, "Verify Filter button text.", sortFilterBtn,
-						Common.verifyText(driver, "Filters", sortFilterBtn), browser, viewPort(device), device,
+		if (version.equalsIgnoreCase("1")) {
+			asrt.assertTrue(Reporter(task, "Check Sort By Bar is Displayed.", sortByBar,
+					Common.checkElementIsDiplayed(driver, sortByBar), browser, viewPort(device), device, version));
+			asrt.assertTrue(Reporter(task, "Check Sort Selection DropDown is Displayed.", sortSelect,
+					Common.checkElementIsDiplayed(driver, sortSelect), browser, viewPort(device), device, version));
+		} else if (version.equalsIgnoreCase("2")) {
+			asrt.assertTrue(Reporter(task, "Check Sort By Bar is Displayed.", sortByBarv2,
+					Common.checkElementIsDiplayed(driver, sortByBarv2), browser, viewPort(device), device, version));
+			asrt.assertTrue(Reporter(task, "Check Sort Selection DropDown is Displayed.", sortSelectv2,
+					Common.checkElementIsDiplayed(driver, sortSelectv2), browser, viewPort(device), device, version));
+		}
+
+		if (device.equalsIgnoreCase("laptop")) {
+
+			if (version.equalsIgnoreCase("1")) {
+				asrt.assertTrue(Reporter(task, "Check Grid View is Displayed.", gridView,
+						Common.checkElementIsDiplayed(driver, gridView), browser, viewPort(device), device, version));
+				asrt.assertTrue(Reporter(task, "Check Tile View is Displayed.", listView,
+						Common.checkElementIsDiplayed(driver, listView), browser, viewPort(device), device, version));
+			} else if (version.equalsIgnoreCase("2")) {
+				asrt.assertTrue(Reporter(task, "Check Grid View is Displayed.", gridViewv2,
+						Common.checkElementIsDiplayed(driver, gridViewv2), browser, viewPort(device), device, version));
+				asrt.assertTrue(Reporter(task, "Check Tile View is Displayed.", listViewv2,
+						Common.checkElementIsDiplayed(driver, listViewv2), browser, viewPort(device), device, version));
+			}
+
+		} else if (device.equalsIgnoreCase("tablet") || device.equalsIgnoreCase("mobile")) {
+			if (version.equalsIgnoreCase("1")) {
+				Common.waitForElementVisible(driver, sortFilterBtn);
+				asrt.assertTrue(Reporter(task, "Check Filter button is Displayed.", sortFilterBtn,
+						Common.checkElementIsDiplayed(driver, sortFilterBtn), browser, viewPort(device), device,
 						version));
+
+				if (device.equalsIgnoreCase("tablet")) {
+					asrt.assertTrue(Reporter(task, "Verify Filter button text.", sortFilterBtn,
+							Common.verifyText(driver, "Filters", sortFilterBtn), browser, viewPort(device), device,
+							version));
+				}
+			} else if (version.equalsIgnoreCase("2")) {
+				Common.waitForElementVisible(driver, sortFilterBtnv2);
+				asrt.assertTrue(Reporter(task, "Check Filter button is Displayed.", sortFilterBtnv2,
+						Common.checkElementIsDiplayed(driver, sortFilterBtnv2), browser, viewPort(device), device,
+						version));
+
+				if (device.equalsIgnoreCase("tablet")) {
+					asrt.assertTrue(Reporter(task, "Verify Filter button text.", sortFilterBtnv2,
+							Common.verifyText(driver, "Filters", sortFilterBtnv2), browser, viewPort(device), device,
+							version));
+				}
 			}
 		}
 	}

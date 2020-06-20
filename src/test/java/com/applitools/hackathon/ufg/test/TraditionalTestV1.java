@@ -42,7 +42,6 @@ public class TraditionalTestV1 extends BaseTests {
 	public static void task3(String browser, String device, String version) {
 		ListOfItemsSection.clickProduct(3, browser, device, asrt, version);
 		SearchAndCartSection.logo(3, browser, device, asrt, version);
-//		SearchAndCartSection.headerTopMenu(3, browser, device, asrt, version);
 		SearchAndCartSection.searchTextBoxAndButton(3, browser, device, asrt, version);
 		SearchAndCartSection.cartAcntWishListTask3(3, browser, device, asrt, version);
 		ListOfItemsSection.validateProductDetailsTask3(3, browser, device, asrt, version);

@@ -24,10 +24,10 @@ public class TraditionalTestV2 extends BaseTests {
 		SearchAndCartSection.cartAcntWishList(1, browser, device, asrt, version);
 		FilterSection.filterColumn(1, browser, device, asrt, version);
 		ListOfItemsSection.validateProdGridItemsTask1(1, browser, device, asrt, version);
-		TrailerSection.quickLinksSection(1, browser, device, asrt, version);
-		TrailerSection.contactSection(1, browser, device, asrt, version);
-		TrailerSection.kitSection(1, browser, device, asrt, version);
-		TrailerSection.footerElements(1, browser, device, asrt, version);
+		TrailerSection.quickLinksSectionV2(1, browser, device, asrt, version);
+		TrailerSection.contactSectionV2(1, browser, device, asrt, version);
+		TrailerSection.kitSectionV2(1, browser, device, asrt, version);
+		TrailerSection.footerElementsV2(1, browser, device, asrt, version);
 	}
 
 	@Test
@@ -42,7 +42,6 @@ public class TraditionalTestV2 extends BaseTests {
 	public static void task3(String browser, String device, String version) {
 		ListOfItemsSection.clickProduct(3, browser, device, asrt, version);
 		SearchAndCartSection.logo(3, browser, device, asrt, version);
-//		SearchAndCartSection.headerTopMenu(3, browser, device, asrt, version);
 		SearchAndCartSection.searchTextBoxAndButton(3, browser, device, asrt, version);
 		SearchAndCartSection.cartAcntWishListTask3(3, browser, device, asrt, version);
 		ListOfItemsSection.validateProductDetailsTask3(3, browser, device, asrt, version);
