@@ -181,7 +181,7 @@ public class SearchAndCartSection extends BaseTests {
 	 */
 	public static void cartAcntWishList(int task, String browser, String device, SoftAssert asrt, String version) {
 		js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, 300)");
+		js.executeScript("window.scrollTo(0, 0)");
 		asrt.assertTrue(Reporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
 		Common.waitForElementVisible(driver, cart);
@@ -274,6 +274,9 @@ public class SearchAndCartSection extends BaseTests {
 	 * @param version: 1 or 2
 	 */
 	public static void cartAcntWishListTask3(int task, String browser, String device, SoftAssert asrt, String version) {
+		js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 0)");
+		
 		Common.waitForElementVisible(driver, account);
 		asrt.assertTrue(Reporter(task, "Check account button is Displayed.", account,
 				Common.checkElementIsDiplayed(driver, account), browser, viewPort(device), device, version));
