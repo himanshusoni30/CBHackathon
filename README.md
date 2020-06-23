@@ -21,7 +21,7 @@ Pre-Requisites to run the test suite
 
 	
 ---------------------------------------
-Steps to trigger test suite.
+Steps to run test suite.
 ---------------------------------------
    - Launch command prompt
    - Go to the path where git repository is cloned
