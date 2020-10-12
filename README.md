@@ -31,4 +31,4 @@ Steps to run test suite.
 ---------------------------------------
 Applitools Test URL.
 ---------------------------------------
-   - https://eyes.applitools.com/app/test-results/?accountId=3Qw4zcTUskWrKPocn6nLkg~~
+   - XXXXXXXXX
